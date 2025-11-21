@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/students">Students App</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <% if (isAuthenticated) { %>
+                    <li class="nav-item">
+                        <span class="navbar-text me-3">
+                            Logged in as <%= currentUser && currentUser.username %>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <form action="/auth/logout" method="POST">
+                            <button class="btn btn-outline-light btn-sm" type="submit">
+                                Logout
+                            </button>
+                        </form>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auth/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/auth/register">Register</a>
+                        </li>
+                        <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

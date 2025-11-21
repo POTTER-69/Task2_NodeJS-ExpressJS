@@ -1,0 +1,54 @@
+<%- include("../layout", {
+  body: (function(){ %>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1>Students</h1>
+      <a class="btn btn-success" href="/students/new">New Student</a>
+    </div>
+
+    <form class="row g-2 mb-3" method="GET" action="/students">
+      <div class="col-auto">
+        <input
+          type="text"
+          name="search"
+          value="<%= search %>"
+          class="form-control"
+          placeholder="Search by name"
+        />
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-outline-primary">Search</button>
+      </div>
+    </form>
+
+    <% if (students.length === 0) { %>
+      <p>No students found.</p>
+    <% } else { %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Major</th>
+            <th>Age</th>
+            <th>GPA</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(function(student){ %>
+            <tr>
+              <td><%= student.name %></td>
+              <td><%= student.major %></td>
+              <td><%= student.age %></td>
+              <td><%= student.gpa %></td>
+              <td>
+                <a href="/students/<%= student._id %>" class="btn btn-sm btn-primary">
+                  View
+                </a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  <% })()
+} ) %>
